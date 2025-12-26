@@ -1,252 +1,87 @@
-🎟️ Event Ticketing Backend API
+# Secure the Crowd
+## _Secure Event Ticketing Backend API_
 
-Backend API untuk platform Ticket Event Online yang dibangun menggunakan Golang, Fiber, dan GORM dengan fokus pada keamanan, autentikasi, otorisasi, dan validasi stok tiket real-time.
+Backend REST API untuk sistem **pemesanan tiket event online** dengan fokus pada **keamanan**, **autentikasi**, dan **validasi stok tiket secara real-time**.
 
-Project ini dikembangkan sebagai pemenuhan Soal 3 – Studi Kasus II: Secure the Crowd!.
+Project ini dikembangkan menggunakan **Golang + Fiber + GORM** sebagai implementasi **Studi Kasus II – Secure the Crowd**.
 
-📌 Fitur Utama
+---
 
-🔐 JWT Authentication
+## ✨ Overview
 
-👤 Role-based Authorization
+**Secure the Crowd** adalah backend service yang menangani:
 
-Admin → Create / Update / Delete Event
+- Autentikasi user menggunakan **JWT**
+- Otorisasi berbasis role (**Admin & User**)
+- Manajemen Event (Admin only)
+- Pemesanan tiket oleh user yang sudah login
+- Validasi stok tiket secara **real-time**
+- Dokumentasi API menggunakan **Postman (Public)**
 
-User → Booking Ticket
+API ini dirancang agar **scalable**, **maintainable**, dan **aman** untuk traffic tinggi.
 
-🎫 Validasi stok tiket real-time (anti overselling)
+---
 
-🗄️ Database MySQL + GORM
+## 🚀 Features
 
-🧩 Struktur MVC (Controller, Model, Middleware)
+- User Registration & Login (JWT Authentication)
+- Role-based Access Control (RBAC)
+- Admin-only Event Management
+- Ticket Booking (Login Required)
+- Real-time Ticket Stock Validation
+- RESTful API Design
 
-📮 Postman API Documentation (Public Link)
+---
+
+## 🛠 Tech Stack
+
+- **Golang**
+- **Fiber**
+- **GORM**
+- **MySQL**
+- **JWT (Authentication)**
+- **Postman (API Documentation)**
+
+---
+
+## ⚙️ Environment Configuration
+Buat file `.env` di root project:
+
+## ▶️ Running the Project
+go run main.go
+
+## 📮 API Documentation
 https://documenter.getpostman.com/view/50460563/2sBXVZpaPy#d9cb811f-fffe-4a5b-bca2-43e3d3ddb188
 
-🛠️ Teknologi yang Digunakan
+## 👨‍💻 Author
+**Amirullah**
 
-Golang
 
-Fiber Framework
+## 📂 Project Structure
 
-GORM ORM
-
-MySQL
-
-JWT (JSON Web Token)
-
-Postman Documentation
-
-📂 Struktur Folder
+```text
 go-belajar/
-│
 ├── controllers/
 │   ├── auth_controller.go
 │   ├── user_controller.go
 │   ├── event_controller.go
 │   └── booking_controller.go
-│
 ├── middleware/
 │   ├── auth.go
 │   └── admin.go
-│
 ├── models/
 │   ├── user.go
 │   ├── event.go
 │   └── booking.go
-│
 ├── database/
 │   └── database.go
-│
 ├── routes/
 │   └── api.go
-│
 ├── config/
 │   └── env.go
-│
 ├── .env
+├── main.go
 ├── go.mod
-├── go.sum
-└── main.go
+└── go.sum
 
-⚙️ Konfigurasi Environment (.env)
-
-Buat file .env di root project:
-
-DB_USER=root
-DB_PASS=
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_NAME=ticketing_db
-
-JWT_SECRET=supersecret123
-
-
-▶️ Cara Menjalankan Project
-# install dependency
-go mod tidy
-
-# jalankan server
-go run main.go
-
-
-Server akan berjalan di:
-
-http://localhost:8080
-
-🔐 Alur Autentikasi
-
-User melakukan registrasi
-
-User login → mendapatkan JWT Token
-
-Token digunakan pada:
-
-Booking Ticket (User)
-
-Create / Update / Delete Event (Admin)
-
-📌 Daftar Endpoint API
-🔑 AUTH
-Login
-POST /api/login
-
-
-Request Body
-
-{
-  "email": "admin@mail.com",
-  "password": "123"
-}
-
-
-Response (200)
-
-{
-  "token": "JWT_TOKEN"
-}
-
-👤 USER
-Create User (Register)
-POST /api/users
-
-
-Request Body
-
-{
-  "name": "Amir",
-  "email": "amir@gmail.com",
-  "password": "123456",
-  "role": "user"
-}
-
-Get All Users
-GET /api/users
-
-Get User by ID
-GET /api/users/{id}
-
-Update User
-PUT /api/users/{id}
-
-Delete User
-DELETE /api/users/{id}
-
-🎉 EVENT (Admin Only)
-
-Semua endpoint Event wajib menggunakan Bearer Token Admin
-
-Create Event
-POST /api/events
-
-
-Authorization
-
-Bearer <ADMIN_TOKEN>
-
-
-Request Body
-
-{
-  "title": "Konser Nasional",
-  "date": "2025-10-01",
-  "location": "Jakarta",
-  "ticket": 100
-}
-
-Get All Events
-GET /api/events
-
-Get Event by ID
-GET /api/events/{id}
-
-Update Event (Admin)
-PUT /api/events/{id}
-
-Delete Event (Admin)
-DELETE /api/events/{id}
-
-🎟️ BOOKING (Login Required)
-Create Booking
-POST /api/bookings
-
-
-Authorization
-
-Bearer <USER_TOKEN>
-
-
-Request Body
-
-{
-  "event_id": 1,
-  "qty": 2
-}
-
-
-Validasi
-
-❌ Ticket habis → request ditolak
-
-✅ Ticket cukup → booking sukses & stok berkurang
-
-Get All Bookings
-GET /api/bookings
-
-🔐 Keamanan & Validasi
-
-JWT digunakan untuk autentikasi
-
-Middleware:
-
-AuthRequired → user wajib login
-
-AdminOnly → hanya admin yang bisa kelola event
-
-Booking menggunakan database transaction
-
-Stok tiket tidak bisa minus
-
-📮 Postman Documentation
-
-🔗 Public Postman Documentation
-👉 https://documenter.getpostman.com/view/50460563/2sBXVZpaPy#d9cb811f-fffe-4a5b-bca2-43e3d3ddb188
-
-
-
-📎 Catatan Pengumpulan
-
-Repository GitHub bersifat public
-
-File .env dan .gitignore disertakan
-
-Dokumentasi API tersedia di Postman
-
-README.md menjelaskan endpoint dan alur sistem
-
-👨‍💻 Author
-
-Nama: Amirullah
-Project: Secure the Crowd! – Backend Event Ticketing API
-Framework: Golang (Fiber + GORM)
 
