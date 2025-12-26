@@ -1,0 +1,13 @@
+{{define "content"}}
+<h1>Daftar Event</h1>
+
+{{range .Events}}
+<div class="card">
+    <h3>{{.Title}}</h3>
+    <p>Tanggal: {{.Date}}</p>
+    <p>Lokasi: {{.Location}}</p>
+    <p>Sisa Tiket: {{.Ticket}}</p>
+    <a href="/events/{{.ID}}">Pesan Tiket</a>
+</div>
+{{end}}
+{{end}}

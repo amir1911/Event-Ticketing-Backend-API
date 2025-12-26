@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f6;
+}
+
+.container {
+    width: 80%;
+    margin: 40px auto;
+}
+
+.card {
+    background: white;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}

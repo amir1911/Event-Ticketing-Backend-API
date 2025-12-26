@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/static/css/style.css">
+
+<div class="container">
+    <h1>{{.Event.Title}}</h1>
+
+    <p><b>Tanggal:</b> {{.Event.Date}}</p>
+    <p><b>Lokasi:</b> {{.Event.Location}}</p>
+    <p><b>Sisa Tiket:</b> {{.Event.Ticket}}</p>
+
+    <form method="POST" action="/book">
+        <input type="hidden" name="event_id" value="{{.Event.ID}}">
+
+        <label>Jumlah Tiket</label>
+        <input type="number" name="qty" min="1" required>
+
+        <button type="submit">Pesan Tiket</button>
+    </form>
+
+    <a href="/events">← Kembali</a>
+</div>

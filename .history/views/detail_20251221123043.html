@@ -1,0 +1,17 @@
+{{define "content"}}
+<h1>{{.Event.Title}}</h1>
+
+<p>Tanggal: {{.Event.Date}}</p>
+<p>Lokasi: {{.Event.Location}}</p>
+<p>Sisa Tiket: {{.Event.Ticket}}</p>
+
+<form method="POST" action="/book">
+    <input type="hidden" name="event_id" value="{{.Event.ID}}">
+    <label>Jumlah Tiket</label><br>
+    <input type="number" name="qty" min="1" required><br><br>
+    <button type="submit">Pesan Tiket</button>
+</form>
+
+<br>
+<a href="/events">← Kembali</a>
+{{end}}

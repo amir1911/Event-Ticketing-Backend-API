@@ -1,0 +1,9 @@
+<h1>Daftar Event</h1>
+
+<ul>
+{{range .Events}}
+	<li>
+		<a href="/events/{{.ID}}">{{.Title}}</a>
+	</li>
+{{end}}
+</ul>

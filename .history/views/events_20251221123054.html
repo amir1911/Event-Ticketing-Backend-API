@@ -1,0 +1,9 @@
+{{define "content"}}
+<h1>Daftar Event</h1>
+
+{{range .Events}}
+<div>
+    <a href="/events/{{.ID}}">{{.Title}}</a>
+</div>
+{{end}}
+{{end}}
