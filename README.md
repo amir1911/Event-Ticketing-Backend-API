@@ -48,9 +48,10 @@ API ini dirancang agar **scalable**, **maintainable**, dan **aman** untuk traffi
 Buat file `.env` di root project:
 
 ## ▶️ Running the Project
-go run main.go
+`go run main.go`
 
 ## 📮 API Documentation
+Untuk melihat Endpoint dapat klik link ini:
 https://documenter.getpostman.com/view/50460563/2sBXVZpaPy#d9cb811f-fffe-4a5b-bca2-43e3d3ddb188
 
 ## 👨‍💻 Author
@@ -83,5 +84,6 @@ go-belajar/
 ├── main.go
 ├── go.mod
 └── go.sum
+
 
 
